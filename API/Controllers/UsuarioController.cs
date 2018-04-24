@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Dados;
 using System.Data.Entity;
+using System.Web;
+
 namespace API.Controllers
 {
     [RoutePrefix("api/usuario")]
@@ -45,7 +47,7 @@ namespace API.Controllers
 
         [AcceptVerbs("PUT")]
         [Route("AlterarUsuario")]
-        public Retorno AlterarUsuario(Usuario usuario)
+        public Success AlterarUsuario(Usuario usuario)
         {
             Retorno ret = new Retorno();
            
@@ -104,7 +106,7 @@ namespace API.Controllers
        
         [AcceptVerbs("GET")]
         [Route("ConsultarUsuarioPorCPF/{cpf}")]
-        public UsuarioModel ConsultarUsuarioPorCPF(string cpf)
+        public Success ConsultarUsuarioPorCPF(string cpf)
         {
 
             UsuarioModel usrModel = new UsuarioModel();
@@ -124,13 +126,16 @@ namespace API.Controllers
                 usrModel.CPF = usrModel.CPF;
               
             }
-            return usrModel;
+            Success ret = new Success();
+            ret.success = true;
+            ret.results = usrModel;
+            return ret;
         }
 
         [BasicAuthentication]
         [AcceptVerbs("GET")]
         [Route("ConsultarUsuariosAut")]
-        public List<UsuarioModel> ConsultarUsuariosAut()
+        public Success ConsultarUsuariosAut()
         {
             List<UsuarioModel> lstUserModel = new List<UsuarioModel>();
             foreach (var item in db.Usuario.ToList())
@@ -143,16 +148,35 @@ namespace API.Controllers
                     CPF = item.CPF,
                 });
             }
-            return lstUserModel;
+            Success ret = new Success();
+            ret.success = true;
+            ret.results = lstUserModel;
+            return ret;
         }
 
 
         [AcceptVerbs("GET")]
         [Route("ConsultarUsuarios")]
-        public List<UsuarioModel> ConsultarUsuarios()
+        public Success ConsultarUsuarios()
         {
+            int Limit = 999999999;
+            var queryString = ControllerContext.Request.RequestUri.Query;
+            if (!String.IsNullOrWhiteSpace(queryString))
+            {
+                //string token = HttpUtility.ParseQueryString(
+                //                     queryString.Substring(1))["auth_token"];
+
+                string limite = HttpUtility.ParseQueryString(
+                                         queryString.Substring(1))["limit"];
+                if (!String.IsNullOrEmpty(limite))
+                {
+                    Limit = Convert.ToInt32(limite);
+                }
+
+
+            }
             List<UsuarioModel> lstUserModel = new List<UsuarioModel>();
-            foreach (var item in db.Usuario.ToList())
+            foreach (var item in db.Usuario.ToList().Take(Limit))
             {
 
                 lstUserModel.Add(new UsuarioModel()
@@ -162,7 +186,11 @@ namespace API.Controllers
                     CPF = item.CPF,
                 });
             }
-            return lstUserModel;
+
+            Success ret = new Success();
+            ret.success = true;
+            ret.results = lstUserModel;
+            return ret;
         }
 
     }
