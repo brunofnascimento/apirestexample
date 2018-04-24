@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{7CF6B365-8CD8-4DA9-A0EA-A1EB80874184}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dados", "Dados\Dados.csproj", "{AB6D53AD-C7CE-44C7-8306-EA732DFDCFE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CF6B365-8CD8-4DA9-A0EA-A1EB80874184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF6B365-8CD8-4DA9-A0EA-A1EB80874184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF6B365-8CD8-4DA9-A0EA-A1EB80874184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF6B365-8CD8-4DA9-A0EA-A1EB80874184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6D53AD-C7CE-44C7-8306-EA732DFDCFE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6D53AD-C7CE-44C7-8306-EA732DFDCFE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6D53AD-C7CE-44C7-8306-EA732DFDCFE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6D53AD-C7CE-44C7-8306-EA732DFDCFE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
